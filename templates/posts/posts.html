@@ -1,0 +1,54 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+    Posts
+{% endblock %}
+
+{% block content %}
+    <div class="container cpb" data-print="true">
+        <h1 class="page-title pt-3 px-3">Posts</h1>
+        <style>
+            .posts {
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: +10px;
+                margin-left: +10px;
+                content: normal;
+                }
+        </style>
+        <div class="posts">
+            {% for post in posts %}
+                <style>
+                .card-post {
+                        height: auto;
+                        display: flex;
+                        flex-wrap: nowrap;
+                        width: 100%;
+                        align-items: stretch;
+                        padding: 2rem;
+                            }
+                </style>
+                <div class="card-post">
+                    <div class="article-card-img" style="min-height: 170px; min-width: 158px">
+                        <div class="article-img">
+                            <img src="/media/{{ post.image }}/" style="height: 170px; width: 155px;">
+                        </div>
+                    </div>
+                    <style>
+                        .te {
+                            width: 800px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    </style>
+                    <div class="article-card-details">
+                        <h2 class="article-card-title">{{ post.title }}</h2>
+                        <p class="te">{{ post.description }}</p>
+                        <a href="/posts/{{ post.id }}/" class="btn btn-primary">More</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

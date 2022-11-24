@@ -1,0 +1,63 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+    Info post
+{% endblock %}
+
+{% block content %}
+    <style>
+        .post {
+            width: 70%;
+            margin-left: 15%;
+        }
+        .comments {
+            width: 70%;
+            margin-left: 15%;
+        }
+        .comment {
+            background: #242b2e;
+            color: #fff;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        . create_comment {
+            width: 70%;
+            margin-left: 15%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <div class="post">
+
+        <div class="info">
+            <div style="display: flex; justify-content: space-between">
+                <h1>{{ post.title }}</h1>
+            </div>
+            <div class="img">
+                <img src="/media/{{ post.image }}/" width="600" height="450" style="text-align: center">
+            </div>
+            <h5>{{ post.description }}</h5>
+            <div class="hashtags">
+                {% for hashtag in hashtags %}
+                    <p>{{ hashtag.title }}</p>
+                {% endfor %}
+                <h2 style="text-align: right">Автор: <i>{{ post.author.username }}</i></h2>
+            </div>
+        </div>
+    </div>
+    <div class="create_comment">
+        <form action="/posts/{{ post.id }}/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary" value="Добавить комментарий">
+        </form>
+    </div>
+    <div class="comments">
+        {% for comment in comments %}
+            <div class="comment">
+                <p class="author">{{ comment.author.username }}</p>
+                <p class="text">{{ comment.text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

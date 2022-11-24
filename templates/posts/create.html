@@ -1,0 +1,17 @@
+{% extends 'layouts/main.html' %}
+
+
+{% block title %}
+    Create post
+{% endblock %}
+
+
+{% block content %}
+    <div>
+        <form action="/posts/create/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Create">
+        </form>
+    </div>
+{% endblock %}
