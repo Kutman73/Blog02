@@ -20,7 +20,7 @@
             margin-bottom: 20px;
             padding: 10px;
         }
-        . create_comment {
+        .create_comment {
             width: 70%;
             margin-left: 15%;
             margin-top: 20px;
@@ -36,7 +36,7 @@
             <div class="img">
                 <img src="/media/{{ post.image }}/" width="600" height="450" style="text-align: center">
             </div>
-            <h5>{{ post.description }}</h5>
+            <h5>{{ post.description|linebreaks }}</h5>
             <div class="hashtags">
                 {% for hashtag in hashtags %}
                     <p>{{ hashtag.title }}</p>
@@ -49,7 +49,7 @@
         <form action="/posts/{{ post.id }}/" method="post">
             {% csrf_token %}
             {{ form }}
-            <input type="submit" class="btn btn-primary" value="Добавить комментарий">
+            <input type="submit" class="btn btn-primary" value="Оставить комментарий">
         </form>
     </div>
     <div class="comments">
